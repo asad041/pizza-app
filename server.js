@@ -19,6 +19,6 @@ app.get('/', (req, res) => res.send('API Running!'));
 // define routes
 app.use('/api/pizza', pizzaRoutes);
 
-const PORT = process.env.PORT || 5500;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Pizza app listening at ${PORT}`));
