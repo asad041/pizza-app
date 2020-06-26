@@ -1,7 +1,24 @@
 const express = require('express');
+const cors = require('cors');
+
+const connectDB = require('./config/db');
+const pizzaRoutes = require('./routes/api/pizza');
+
 const app = express();
-const port = 5500;
 
-app.get('/', (req, res) => res.send('Hello World!'));
+// connect database
+connectDB();
 
-app.listen(port, () => console.log(`Pizza app listening at ${port}`));
+app.use(cors());
+
+// Init middleware
+app.use(express.json({ extended: false }));
+
+app.get('/', (req, res) => res.send('API Running!'));
+
+// define routes
+app.use('/api/pizza', pizzaRoutes);
+
+const PORT = process.env.PORT || 5500;
+
+app.listen(PORT, () => console.log(`Pizza app listening at ${PORT}`));
