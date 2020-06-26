@@ -1,3 +1,10 @@
 {
-  "mongoURI": "mongodb://127.0.0.1:27017/pizza"
+  "mongoURI": "mongodb://127.0.0.1:27017/pizza",
+  "orderStatus": [
+    "pending",
+    "accepted",
+    "out for delivery",
+    "completed",
+    "cancelled"
+  ]
 }
