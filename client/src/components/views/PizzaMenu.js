@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { addToCartAction } from '../../store/actions';
 import { baseCurrency } from '../../config';
+import InputSmall from '../common/InputSmall';
 
 const data = [
   {
@@ -40,6 +41,14 @@ const PizzaMenu = (props) => {
           {data.map((pizza) => (
             <div key={pizza.id} className='w-full md:w-3/12 px-4'>
               <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-pink-600'>
+                <button
+                  className='absolute bg-pink-600 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-2 z-10 right-0 mt-2 -mr-3'
+                  type='button'
+                  style={{ transition: 'all .15s ease' }}
+                >
+                  Price: {baseCurrency}
+                  {pizza.price.toFixed(2)}
+                </button>
                 <img
                   alt='...'
                   src={pizza.image}
@@ -66,14 +75,7 @@ const PizzaMenu = (props) => {
                     {pizza.description}
                   </p>
                   <div className='mx-auto'>
-                    <button
-                      className='bg-pink-900 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1'
-                      type='button'
-                      style={{ transition: 'all .15s ease' }}
-                    >
-                      {baseCurrency}
-                      {pizza.price.toFixed(2)}
-                    </button>
+                    <InputSmall />
                     <button
                       className='bg-gray-900 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 float-right'
                       type='button'
