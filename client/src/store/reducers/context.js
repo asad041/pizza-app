@@ -21,21 +21,21 @@ export default (state = initialState, action) => {
       if (isExists) {
         const filteredCart = state.cart.map((pizza) =>
           pizza._id === payload._id
-            ? { ...pizza, quantity: pizza.quantity + 1 }
+            ? { ...pizza, quantity: pizza.quantity + payload.quantity }
             : pizza
         );
         return {
           ...state,
           cart: filteredCart,
-          quantity: state.quantity + 1,
-          total: state.total + payload.price,
+          quantity: state.quantity + payload.quantity,
+          total: state.total + payload.price * payload.quantity,
         };
       }
       return {
         ...state,
-        cart: [...state.cart, { ...payload, quantity: 1 }],
-        quantity: state.quantity + 1,
-        total: state.total + payload.price,
+        cart: [...state.cart, { ...payload, quantity: payload.quantity }],
+        quantity: state.quantity + payload.quantity,
+        total: state.total + payload.price * payload.quantity,
       };
 
     default:

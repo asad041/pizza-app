@@ -39,7 +39,7 @@ const PizzaMenu = (props) => {
       <div className='container mx-auto px-4'>
         <div className='flex flex-wrap items-center mt-32'>
           {data.map((pizza) => (
-            <div key={pizza.id} className='w-full md:w-3/12 px-4'>
+            <div key={pizza._id} className='w-full md:w-3/12 px-4'>
               <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-pink-600'>
                 <button
                   className='absolute bg-pink-600 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-2 z-10 right-0 mt-2 -mr-3'
@@ -75,15 +75,7 @@ const PizzaMenu = (props) => {
                     {pizza.description}
                   </p>
                   <div className='mx-auto'>
-                    <InputSmall />
-                    <button
-                      className='bg-gray-900 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 float-right'
-                      type='button'
-                      style={{ transition: 'all .15s ease' }}
-                      onClick={() => handleAddToCart(pizza)}
-                    >
-                      Add to order
-                    </button>
+                    <InputSmall pizza={pizza} />
                   </div>
                 </blockquote>
               </div>
