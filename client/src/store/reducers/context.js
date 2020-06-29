@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
     case CONTEXT.RESET_PROPS:
       return initialState;
 
-    case CONTEXT.ADD_CART:
+    case CONTEXT.ADD_CART: {
       const isExists = state.cart.find((pizza) => pizza._id === payload._id);
       if (isExists) {
         const filteredCart = state.cart.map((pizza) =>
@@ -37,6 +37,33 @@ export default (state = initialState, action) => {
         quantity: state.quantity + payload.quantity,
         total: state.total + payload.price * payload.quantity,
       };
+    }
+
+    case CONTEXT.UPDATE_CART: {
+      const filtered = state.cart.filter((pizza) => pizza._id !== payload._id);
+      const updatedQuantity = state.quantity - payload.quantity;
+      const updatedTotal = state.total - payload.price * payload.quantity;
+      return {
+        ...state,
+        cart: [...filtered, { ...payload, quantity: payload.quantity }],
+        quantity: updatedQuantity + payload.quantity,
+        total: updatedTotal + payload.price * payload.quantity,
+      };
+    }
+
+    case CONTEXT.REMOVE_CART: {
+      const isExists = state.cart.find((pizza) => pizza._id === payload._id);
+      if (!isExists) {
+        return state;
+      }
+      const filtered = state.cart.filter((pizza) => pizza._id !== payload._id);
+      return {
+        ...state,
+        cart: filtered,
+        quantity: state.quantity - isExists.quantity,
+        total: state.total - payload.price * payload.quantity,
+      };
+    }
 
     default:
       return state;

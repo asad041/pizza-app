@@ -13,3 +13,17 @@ export const addToCartAction = (payload) => (dispatch) => {
     payload,
   });
 };
+
+export const updateCartAction = (payload) => (dispatch) => {
+  dispatch({
+    type: CONTEXT.UPDATE_CART,
+    payload,
+  });
+};
+
+export const removeFromCartAction = (payload) => (dispatch) => {
+  dispatch({
+    type: CONTEXT.REMOVE_CART,
+    payload,
+  });
+};

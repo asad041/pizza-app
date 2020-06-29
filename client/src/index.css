@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.menu-ribbon {
+  position: absolute;
+  top: 10px;
+  right: -10px;
+  background-color: #805ad5;
+  color: white;
+  padding: 0.123rem 0.6rem;
+  border-radius: 0.875rem;
+  font-weight: 600;
+}
+.cart-image {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}

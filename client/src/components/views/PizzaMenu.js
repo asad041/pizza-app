@@ -27,6 +27,23 @@ const data = [
   },
 ];
 
+const RenderCard = ({ pizza }) => (
+  <div className='col-md-3'>
+    <div className='card shadow'>
+      <div className='menu-ribbon'>
+        Price: {baseCurrency}
+        {pizza.price}
+      </div>
+      <img className='card-img-top' src={pizza.image} alt='Card image cap' />
+      <div className='card-body'>
+        <h5 className='card-title'>{pizza.name}</h5>
+        <p className='card-text'>{pizza.description}</p>
+        <InputSmall pizza={pizza} />
+      </div>
+    </div>
+  </div>
+);
+
 const PizzaMenu = (props) => {
   const dispatch = useDispatch();
 
@@ -35,55 +52,15 @@ const PizzaMenu = (props) => {
   };
 
   return (
-    <section className='pb-20 -mt-20'>
-      <div className='container mx-auto px-4'>
-        <div className='flex flex-wrap items-center mt-32'>
+    <div className='container mt-4'>
+      <section className='section'>
+        <div className='row'>
           {data.map((pizza) => (
-            <div key={pizza._id} className='w-full md:w-3/12 px-4'>
-              <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-pink-600'>
-                <button
-                  className='absolute bg-pink-600 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-2 z-10 right-0 mt-2 -mr-3'
-                  type='button'
-                  style={{ transition: 'all .15s ease' }}
-                >
-                  Price: {baseCurrency}
-                  {pizza.price.toFixed(2)}
-                </button>
-                <img
-                  alt='...'
-                  src={pizza.image}
-                  className='w-full align-middle rounded-t-lg'
-                />
-                <blockquote className='relative p-8 mb-2'>
-                  <svg
-                    preserveAspectRatio='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                    viewBox='0 0 583 95'
-                    className='absolute left-0 w-full block'
-                    style={{
-                      height: '95px',
-                      top: '-94px',
-                    }}
-                  >
-                    <polygon
-                      points='-30,95 583,95 583,65'
-                      className='text-pink-600 fill-current'
-                    ></polygon>
-                  </svg>
-                  <h4 className='text-xl font-bold text-white'>{pizza.name}</h4>
-                  <p className='text-md font-light mt-2 text-white mb-4'>
-                    {pizza.description}
-                  </p>
-                  <div className='mx-auto'>
-                    <InputSmall pizza={pizza} />
-                  </div>
-                </blockquote>
-              </div>
-            </div>
+            <RenderCard key={pizza._id} pizza={pizza} />
           ))}
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 
