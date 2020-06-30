@@ -7,6 +7,18 @@ export const setContextStateProps = (payload) => (dispatch) => {
   });
 };
 
+export const signinAction = (values) => (dispatch) => {
+  dispatch({
+    type: CONTEXT.SIGN_IN,
+  });
+};
+
+export const signupAction = (values) => (dispatch) => {
+  dispatch({
+    type: CONTEXT.SIGN_UP,
+  });
+};
+
 export const addToCartAction = (payload) => (dispatch) => {
   dispatch({
     type: CONTEXT.ADD_CART,

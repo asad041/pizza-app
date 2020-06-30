@@ -12,12 +12,16 @@ const InputSmall = ({ pizza }) => {
     setInputValue(1);
   };
 
-  const handleInputChange = ({ target }) => setInputValue(target.value);
+  const handleInputChange = ({ target: { value } }) => {
+    if (parseInt(value) < 1) return;
+
+    setInputValue(value);
+  };
 
   return (
     <div className='form-group'>
-      <div class='col-auto'>
-        <div class='input-group mb-2'>
+      <div className='col-auto'>
+        <div className='input-group mb-2'>
           <input
             type='number'
             placeholder='Quantity'
@@ -25,7 +29,7 @@ const InputSmall = ({ pizza }) => {
             value={inputValue}
             onChange={handleInputChange}
           />
-          <div class='input-group-prepend'>
+          <div className='input-group-prepend'>
             <button
               className='btn btn-dark btn-sm'
               type='button'
