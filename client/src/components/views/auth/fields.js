@@ -9,7 +9,6 @@ import {
 
 const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 const namingRegex = /^[a-zA-Z]{2,}(?: [a-zA-Z]+){0,2}$/;
-const phoneRegex = /^\d{1,12}$/;
 
 const matches = addValidator({
   validator: (options, value, allValues) => {

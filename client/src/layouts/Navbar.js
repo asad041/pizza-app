@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { baseCurrency } from '../config';
 
 const Navbar = () => {
-  const [showMenu, setShowMenu] = useState(false);
-  const { quantity, total } = useSelector((state) => state.context);
+  // const [showMenu, setShowMenu] = useState(false);
+  const { quantity, total, isAuthenticated, user } = useSelector(
+    (state) => state.context
+  );
 
   return (
     <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
@@ -38,20 +39,23 @@ const Navbar = () => {
             </Link>
           </li>
           <li className='nav-item'>
-            <a className='nav-link disabled' href='#'>
+            <Link className='nav-link disabled' to='#/'>
               About us
-            </a>
+            </Link>
           </li>
         </ul>
         <Link to='/my-cart' className='btn btn-success my-2 btn-sm'>
           Cart ({quantity}) - {baseCurrency}
           {total.toFixed(2)}
         </Link>
+        {isAuthenticated && user && (
+          <Link to='#/account' className='btn btn-primary ml-2 my-2 btn-sm'>
+            {user.fullname}
+          </Link>
+        )}
       </div>
     </nav>
   );
 };
-
-Navbar.propTypes = {};
 
 export default Navbar;

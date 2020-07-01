@@ -1,13 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Navbar from './Navbar';
+import Footer from './Footer';
 import PizzaMenu from '../components/views/PizzaMenu';
 import Checkout from '../components/views/Checkout';
 import Cart from '../components/views/Cart';
+import MyOrders from '../components/views/MyOrders';
+import AuthLayout from '../components/views/auth/AuthLayout';
 
-const Layout = (props) => {
+const Layout = () => {
   return (
     <>
       <Router fallback={<span />}>
@@ -16,12 +18,13 @@ const Layout = (props) => {
           <Route path='/' component={PizzaMenu} exact />
           <Route path='/my-cart' component={Cart} exact />
           <Route path='/check-out' component={Checkout} exact />
+          <Route path='/my-orders' component={MyOrders} exact />
+          <Route path='/sign-in' component={AuthLayout} exact />
         </Switch>
+        <Footer />
       </Router>
     </>
   );
 };
-
-Layout.propTypes = {};
 
 export default Layout;

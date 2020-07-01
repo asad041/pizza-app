@@ -1,10 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-
-import { addToCartAction } from '../../store/actions';
-import { baseCurrency } from '../../config';
 import InputSmall from '../common/InputSmall';
+import { baseCurrency } from '../../config';
 
 const data = [
   {
@@ -34,7 +30,7 @@ const RenderCard = ({ pizza }) => (
         Price: {baseCurrency}
         {pizza.price}
       </div>
-      <img className='card-img-top' src={pizza.image} alt='Card image cap' />
+      <img className='card-img-top' src={pizza.image} alt='pizza' />
       <div className='card-body'>
         <h5 className='card-title'>{pizza.name}</h5>
         <p className='card-text'>{pizza.description}</p>
@@ -44,13 +40,7 @@ const RenderCard = ({ pizza }) => (
   </div>
 );
 
-const PizzaMenu = (props) => {
-  const dispatch = useDispatch();
-
-  const handleAddToCart = (id) => {
-    dispatch(addToCartAction(id));
-  };
-
+const PizzaMenu = () => {
   return (
     <div className='container mt-4'>
       <section className='section'>
@@ -63,7 +53,5 @@ const PizzaMenu = (props) => {
     </div>
   );
 };
-
-PizzaMenu.propTypes = {};
 
 export default PizzaMenu;
