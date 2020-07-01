@@ -1,4 +1,7 @@
 const express = require('express');
+const auth = require('../../middleware/auth');
+const order_controller = require('../../controllers/OrderController');
+
 const router = express.Router();
 
 /**
@@ -7,7 +10,7 @@ const router = express.Router();
  * @description get all the orders
  * @access PUBLIC
  */
-router.get('');
+router.get('', auth, order_controller.get_orders);
 
 /**
  * @method GET
@@ -23,6 +26,6 @@ router.get('/:_orderId');
  * @description place an order
  * @access PUBLIC
  */
-router.post('/');
+router.post('/', auth, order_controller.save_order);
 
 module.exports = router;

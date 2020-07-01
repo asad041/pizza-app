@@ -26,6 +26,30 @@ exports.get_pizza = async (req, res) => {
   }
 };
 
+// add pizza
+exports.add_pizza = async (req, res) => {
+  try {
+    const { name, description, image, price } = req.body;
+
+    const pizza = new Pizza({
+      name,
+      description,
+      image,
+      price,
+    });
+
+    await pizza.save();
+
+    res.json({
+      message: 'Single pizza',
+      pizza,
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send('Server error');
+  }
+};
+
 // pizza authentication middleware
 exports.middlware__validate_pizza = (str) => {
   return async (req, res, next) => {

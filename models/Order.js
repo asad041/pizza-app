@@ -17,7 +17,7 @@ const orderSchema = new Schema(
           ref: 'pizza',
         },
         quantity: { type: Number, default: 0, required: true },
-        rate: { type: Schema.Types.Decimal128, default: 0 },
+        price: { type: Schema.Types.Decimal128, default: 0 },
       },
     ],
     status: {

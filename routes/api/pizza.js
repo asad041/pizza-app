@@ -4,6 +4,14 @@ const router = express.Router();
 const pizza_controller = require('../../controllers/pizzaController');
 
 /**
+ * @method POST
+ * @route api/pizza
+ * @description add pizza to the menu
+ * @access PUBLIC
+ */
+router.post('/', pizza_controller.add_pizza);
+
+/**
  * @method GET
  * @route api/pizza
  * @description get all the avialable pizzas
