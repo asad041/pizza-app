@@ -34,7 +34,7 @@ const Cart = () => {
             <Summary>
               <div className='card-body'>
                 <Link
-                  to='/check-out'
+                  to='/app/check-out'
                   className='btn btn-primary btn-sm btn-block'
                 >
                   Checkout

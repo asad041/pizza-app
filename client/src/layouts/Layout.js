@@ -16,10 +16,10 @@ const Layout = () => {
         <Navbar />
         <Switch>
           <Route path='/' component={PizzaMenu} exact />
-          <Route path='/my-cart' component={Cart} exact />
-          <Route path='/check-out' component={Checkout} exact />
-          <Route path='/my-orders' component={MyOrders} exact />
-          <Route path='/sign-in' component={AuthLayout} exact />
+          <Route path='/app/my-cart' component={Cart} exact />
+          <Route path='/app/check-out' component={Checkout} exact />
+          <Route path='/app/my-orders' component={MyOrders} exact />
+          <Route path='/app/sign-in' component={AuthLayout} exact />
         </Switch>
         <Footer />
       </Router>

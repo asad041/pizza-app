@@ -20,7 +20,7 @@ const EmptyBag = () => {
                 </p>
                 <p>
                   To check your oder history, click{' '}
-                  <Link to='/my-orders'>here</Link>
+                  <Link to='/app/my-orders'>here</Link>
                 </p>
               </div>
             </div>

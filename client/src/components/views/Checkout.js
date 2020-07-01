@@ -33,7 +33,7 @@ const Checkout = () => {
   };
 
   if (orderSubmitted) {
-    return <Redirect to='/my-orders' />;
+    return <Redirect to='/app/my-orders' />;
   }
 
   if (!quantity || quantity < 1) {

@@ -18,7 +18,7 @@ const MyOrders = () => {
   }, []);
 
   if (!isAuthenticated) {
-    return <Redirect to='/sign-in' />;
+    return <Redirect to='/app/sign-in' />;
   }
 
   return (
@@ -34,7 +34,7 @@ const MyOrders = () => {
                   orders.map((order) => (
                     <OrderDetails key={order._id} order={order} />
                   ))}
-                {orders.length === 0 && (
+                {isIterableArray(orders) && orders.length === 0 && (
                   <NoRecordFoud title='Your orders bag is empty!' />
                 )}
               </>

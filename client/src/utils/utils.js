@@ -7,7 +7,7 @@ export const isIterableArray = (array) =>
 export const setAPIUrl = () => {
   const baseUrl =
     process.env.NODE_ENV === 'production'
-      ? 'http://15.206.146.98'
+      ? '54.254.184.113'
       : 'http://localhost:5000';
   axios.defaults.baseURL = baseUrl;
 };

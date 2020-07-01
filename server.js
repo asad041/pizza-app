@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/api/auth'),
@@ -12,6 +13,16 @@ const app = express();
 connectDB();
 
 app.use(cors());
+
+app.use(express.static('client/build'));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
+
+app.get('/app/*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
 
 // Init middleware
 app.use(express.json({ extended: false }));

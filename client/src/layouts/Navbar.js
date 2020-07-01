@@ -34,7 +34,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li className='nav-item'>
-            <Link className='nav-link' to='/my-orders'>
+            <Link className='nav-link' to='/app/my-orders'>
               History
             </Link>
           </li>
@@ -44,7 +44,7 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
-        <Link to='/my-cart' className='btn btn-success my-2 btn-sm'>
+        <Link to='/app/my-cart' className='btn btn-success my-2 btn-sm'>
           Cart ({quantity}) - {baseCurrency}
           {total.toFixed(2)}
         </Link>

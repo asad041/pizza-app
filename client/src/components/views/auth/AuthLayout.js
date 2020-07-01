@@ -7,7 +7,7 @@ const AuthLayout = () => {
   const { isAuthenticated } = useSelector((state) => state.context);
 
   if (isAuthenticated) {
-    return <Redirect to='/my-orders' />;
+    return <Redirect to='/app/my-orders' />;
   }
 
   return (
