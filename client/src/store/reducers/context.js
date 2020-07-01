@@ -1,6 +1,7 @@
 import { CONTEXT } from '../actions';
 
 const initialState = {
+  menu: [],
   orders: [],
   cart: [],
   quantity: 0,
@@ -16,6 +17,13 @@ export default (state = initialState, action) => {
 
     case CONTEXT.RESET_PROPS:
       return initialState;
+
+    case CONTEXT.GET_MENU:
+      return {
+        ...state,
+        menu: payload.pizzas,
+        gettingMenu: false,
+      };
 
     case CONTEXT.ADD_CART: {
       const isExists = state.cart.find((pizza) => pizza._id === payload._id);

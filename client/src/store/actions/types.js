@@ -21,11 +21,13 @@ export const CONTEXT = {
   SIGN_UP: 'SIGN_UP',
   ORDER_ADDED: 'ORDER_ADDED',
   GET_ORDERS: 'GET_ORDERS',
+  GET_MENU: 'GET_MENU',
 };
 
 export const API_URLS = {
-  AUTH: 'http://54.254.184.113/api/auth',
-  SIGNIN: 'http://54.254.184.113/api/auth/signin',
-  SIGNUP: 'http://54.254.184.113/api/auth/signup',
-  ORDER: 'http://54.254.184.113/api/order',
+  AUTH: '/api/auth',
+  SIGNIN: '/api/auth/signin',
+  SIGNUP: '/api/auth/signup',
+  ORDER: '/api/order',
+  MENU: '/api/pizza',
 };

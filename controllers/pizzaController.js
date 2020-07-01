@@ -3,9 +3,23 @@ const Pizza = require('../models/Pizza');
 
 exports.get_pizzas = async (req, res) => {
   try {
+    const pizzas = await Pizza.find({ isActive: true });
+
+    let result = [];
+    pizzas.map((pizza) => {
+      let price = pizza.price;
+      result.push({
+        _id: pizza._id,
+        name: pizza.name,
+        description: pizza.description,
+        image: pizza.image,
+        price: parseFloat(price),
+      });
+    });
+
     res.json({
       message: 'Available pizzas menu',
-      pizzas: [],
+      pizzas: result,
     });
   } catch (error) {
     console.log(error.message);

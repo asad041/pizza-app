@@ -18,6 +18,19 @@ export const setContextStateProps = (payload) => (dispatch) => {
   });
 };
 
+export const getMenuAction = () => async (dispatch) => {
+  try {
+    dispatch({ type: CONTEXT.SET_PROPS, payload: { gettingMenu: true } });
+    const response = await axios.get(API_URLS.MENU);
+    dispatch({ type: CONTEXT.GET_MENU, payload: response.data });
+  } catch (error) {
+    const { data } = error.response;
+    const message = data && data.message ? data.message : SERVER_ERROR;
+    dispatch(setAlert(message, NOTIFICATION.DANGER));
+    dispatch({ type: CONTEXT.SET_PROPS, payload: { gettingMenu: false } });
+  }
+};
+
 export const signinAction = (values) => async (dispatch) => {
   try {
     const response = await axios.post(API_URLS.SIGNIN, values);
