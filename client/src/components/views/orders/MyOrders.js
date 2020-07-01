@@ -34,7 +34,7 @@ const MyOrders = () => {
                   orders.map((order) => (
                     <OrderDetails key={order._id} order={order} />
                   ))}
-                {isIterableArray(orders) && orders.length === 0 && (
+                {orders && orders.length === 0 && (
                   <NoRecordFoud title='Your orders bag is empty!' />
                 )}
               </>
