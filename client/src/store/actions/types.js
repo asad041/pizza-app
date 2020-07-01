@@ -24,8 +24,8 @@ export const CONTEXT = {
 };
 
 export const API_URLS = {
-  AUTH: '/api/auth',
-  SIGNIN: '/api/auth/signin',
-  SIGNUP: '/api/auth/signup',
-  ORDER: '/api/order',
+  AUTH: 'http://54.254.184.113/api/auth',
+  SIGNIN: 'http://54.254.184.113/api/auth/signin',
+  SIGNUP: 'http://54.254.184.113/api/auth/signup',
+  ORDER: 'http://54.254.184.113/api/order',
 };
