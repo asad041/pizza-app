@@ -7,7 +7,9 @@ import {
   SERVER_ERROR,
   setAlert,
 } from '../actions';
-import { setAuthToken } from '../../utils/utils';
+import { setAuthToken, setAPIUrl } from '../../utils/utils';
+
+setAPIUrl();
 
 export const setContextStateProps = (payload) => (dispatch) => {
   dispatch({
