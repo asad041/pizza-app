@@ -4,9 +4,14 @@ import { Link } from 'react-router-dom';
 
 import CartItem from './CartItem';
 import Summary from './Summary';
+import EmptyBag from './EmptyBag';
 
-const Cart = (props) => {
+const Cart = () => {
   const { cart, quantity } = useSelector((state) => state.context);
+
+  if (!quantity || quantity < 1) {
+    return <EmptyBag />;
+  }
 
   return (
     <div className='container mt-4'>

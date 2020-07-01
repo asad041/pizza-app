@@ -1,6 +1,7 @@
 import { CONTEXT } from '../actions';
 
 const initialState = {
+  orders: [],
   cart: [],
   quantity: 0,
   total: 0,
@@ -40,10 +41,8 @@ export default (state = initialState, action) => {
     }
 
     case CONTEXT.UPDATE_CART: {
-      console.log(payload);
       const index = state.cart.findIndex((pizza) => pizza._id === payload._id);
       const pizzaObject = state.cart[index];
-      // const filtered = state.cart.filter((pizza) => pizza._id !== payload._id);
       const updatedQuantity = state.quantity - pizzaObject.quantity;
       const updatedTotal =
         state.total - pizzaObject.price * pizzaObject.quantity;
@@ -54,7 +53,6 @@ export default (state = initialState, action) => {
           { ...state.cart[index], quantity: payload.quantity },
           ...state.cart.slice(index + 1),
         ],
-        // cart: [...filtered, { ...payload, quantity: payload.quantity }],
         quantity: updatedQuantity + payload.quantity,
         total: updatedTotal + payload.price * payload.quantity,
       };
@@ -70,6 +68,26 @@ export default (state = initialState, action) => {
         cart: state.cart.filter((pizza) => pizza._id !== payload._id),
         quantity: state.quantity - isExists.quantity,
         total: state.total - isExists.price * isExists.quantity,
+      };
+    }
+
+    case CONTEXT.ORDER_ADDED:
+      return {
+        ...state,
+        cart: [],
+        quantity: 0,
+        total: 0,
+        orderSubmitted: true,
+        orders: [...state.orders, { ...payload.order }],
+      };
+
+    case CONTEXT.SIGN_IN:
+    case CONTEXT.SIGN_UP: {
+      localStorage.setItem('xToken', payload.token);
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: payload.user,
       };
     }
 

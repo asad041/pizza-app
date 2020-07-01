@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
+import { signinAction } from '../../../store/actions';
 import InputField from '../../common/InputField';
 import SubmitButton from '../../common/SubmitButton';
 import { SIGNIN_FORM, signinValidator } from './fields';
-import { signinAction } from '../../../store/actions';
 
 const Signin = ({ submitting, invalid, handleSubmit }) => {
   const dispatch = useDispatch();

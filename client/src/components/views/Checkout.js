@@ -1,16 +1,39 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { submitOrderAction } from '../../store/actions';
+import EmptyBag from './EmptyBag';
 import Summary from './Summary';
 import PaymentMethod from './PaymentMethod';
 import Signin from './auth/Signin';
 import Signup from './auth/Signup';
+import UserInfo from './auth/UserInfo';
 
-const Checkout = (props) => {
+const getPizzaValues = (cart) => {
+  let pizzas = [];
+  cart.map((pizza) => {
+    pizzas.push({
+      _pizzaId: pizza._id,
+      quantity: pizza.quantity,
+      price: pizza.price,
+    });
+  });
+  return { pizzas };
+};
+const Checkout = () => {
   const [deliveryMethod, setDeliveryMethod] = useState('');
-  const { cart, quantity, total } = useSelector((state) => state.context);
+  const { isAuthenticated, user, cart, quantity } = useSelector(
+    (state) => state.context
+  );
+  const dispatch = useDispatch();
+
+  const submitOrderHandler = () => {
+    dispatch(submitOrderAction(getPizzaValues(cart)));
+  };
+
+  if (!quantity || quantity < 1) {
+    return <EmptyBag />;
+  }
 
   return (
     <div className='container mt-4'>
@@ -20,24 +43,32 @@ const Checkout = (props) => {
             <div className='card shadow'>
               <div className='card-body'>
                 <h5 className='card-title'>Delivery method</h5>
-                <p>
-                  <button
-                    className='btn btn-success btn-sm btn-block'
-                    onClick={() => setDeliveryMethod('signin')}
-                  >
-                    Already a member?
-                  </button>
-                  <button
-                    className='btn btn-dark btn-sm btn-block'
-                    onClick={() => setDeliveryMethod('signup')}
-                  >
-                    New customer!
-                  </button>
-                </p>
+                {!isAuthenticated && (
+                  <p>
+                    <button
+                      className='btn btn-success btn-sm btn-block'
+                      onClick={() => setDeliveryMethod('signin')}
+                    >
+                      Already a member?
+                    </button>
+                    <button
+                      className='btn btn-dark btn-sm btn-block'
+                      onClick={() => setDeliveryMethod('signup')}
+                    >
+                      New customer!
+                    </button>
+                  </p>
+                )}
               </div>
               <div className='card-body'>
-                {deliveryMethod === 'signin' && <Signin />}
-                {deliveryMethod === 'signup' && <Signup />}
+                {isAuthenticated && user ? (
+                  <UserInfo />
+                ) : (
+                  <>
+                    {deliveryMethod === 'signin' && <Signin />}
+                    {deliveryMethod === 'signup' && <Signup />}
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -46,14 +77,16 @@ const Checkout = (props) => {
           </div>
           <div className='col-md-4'>
             <Summary>
-              <div className='card-body'>
-                <Link
-                  to='/check-out'
-                  className='btn btn-primary btn-sm btn-block'
-                >
-                  Checkout
-                </Link>
-              </div>
+              {isAuthenticated && user && (
+                <div className='card-body'>
+                  <button
+                    className='btn btn-primary btn-sm btn-block'
+                    onClick={() => submitOrderHandler()}
+                  >
+                    Submit order
+                  </button>
+                </div>
+              )}
             </Summary>
           </div>
         </div>
@@ -61,7 +94,5 @@ const Checkout = (props) => {
     </div>
   );
 };
-
-Checkout.propTypes = {};
 
 export default Checkout;
