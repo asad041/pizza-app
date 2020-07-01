@@ -7,6 +7,7 @@ const {
   validateSignin,
   validateSignup,
 } = require('../../models/UserValidation');
+const auth = require('../../middleware/auth');
 
 /**
  * @method POST
@@ -28,6 +29,6 @@ router.post('/signup', validateSignup, validator, auth_controller.signup);
  * @description user authentication
  * @access PUBLIC
  */
-router.get('/');
+router.get('/', auth, auth_controller.authenticate);
 
 module.exports = router;
