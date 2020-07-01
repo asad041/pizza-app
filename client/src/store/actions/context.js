@@ -33,6 +33,22 @@ export const signinAction = (values) => async (dispatch) => {
   }
 };
 
+export const getOrdersAction = () => async (dispatch) => {
+  try {
+    dispatch({ type: CONTEXT.SET_PROPS, payload: { gettingOrders: true } });
+    setAuthToken();
+    const response = await axios.get(API_URLS.ORDER);
+    dispatch({ type: CONTEXT.GET_ORDERS, payload: response.data });
+    dispatch({ type: CONTEXT.SET_PROPS, payload: { gettingOrders: false } });
+  } catch (error) {
+    const { data } = error.response;
+    const message = data && data.message ? data.message : SERVER_ERROR;
+    dispatch(setAlert(message, NOTIFICATION.DANGER));
+    dispatch({ type: CONTEXT.SET_PROPS, payload: { gettingOrders: false } });
+    // throw new SubmissionError({ _error: message });
+  }
+};
+
 export const submitOrderAction = (values) => async (dispatch) => {
   try {
     setAuthToken();
@@ -69,6 +85,12 @@ export const addToCartAction = (payload) => (dispatch) => {
     type: CONTEXT.ADD_CART,
     payload,
   });
+  dispatch(
+    setAlert(
+      `${payload.quantity} ${payload.name} has added successfully to your cart.`,
+      NOTIFICATION.SUCCESS
+    )
+  );
 };
 
 export const updateCartAction = (payload) => (dispatch) => {

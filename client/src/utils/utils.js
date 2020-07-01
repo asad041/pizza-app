@@ -1,4 +1,8 @@
 import axios from 'axios';
+import moment from 'moment';
+
+export const isIterableArray = (array) =>
+  Array.isArray(array) && !!array.length;
 
 export const setAPIUrl = () => {
   const baseUrl =
@@ -19,4 +23,12 @@ export const setAuthToken = (token) => {
   } else {
     delete axios.defaults.headers.common['x-token'];
   }
+};
+
+// MMM D, YYYY h:mm a
+export const dateFormatter = (inputDate, format = 'MMM D, YYYY') => {
+  // if (!moment.isDate(inputDate)) {
+  //   return inputDate;
+  // }
+  return moment(inputDate).format(format);
 };

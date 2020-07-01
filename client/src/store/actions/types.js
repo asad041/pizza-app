@@ -20,6 +20,7 @@ export const CONTEXT = {
   SIGN_IN: 'SIGN_IN',
   SIGN_UP: 'SIGN_UP',
   ORDER_ADDED: 'ORDER_ADDED',
+  GET_ORDERS: 'GET_ORDERS',
 };
 
 export const API_URLS = {

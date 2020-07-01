@@ -71,6 +71,13 @@ export default (state = initialState, action) => {
       };
     }
 
+    case CONTEXT.GET_ORDERS:
+      return {
+        ...state,
+        orders: payload.orders,
+        orderSubmitted: false,
+      };
+
     case CONTEXT.ORDER_ADDED:
       return {
         ...state,
@@ -78,7 +85,7 @@ export default (state = initialState, action) => {
         quantity: 0,
         total: 0,
         orderSubmitted: true,
-        orders: [...state.orders, { ...payload.order }],
+        // orders: [...state.orders, { ...payload.order }],
       };
 
     case CONTEXT.SIGN_IN:

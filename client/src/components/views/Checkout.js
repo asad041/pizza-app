@@ -8,6 +8,7 @@ import PaymentMethod from './PaymentMethod';
 import Signin from './auth/Signin';
 import Signup from './auth/Signup';
 import UserInfo from './auth/UserInfo';
+import { Redirect } from 'react-router-dom';
 
 const getPizzaValues = (cart) => {
   let pizzas = [];
@@ -22,7 +23,7 @@ const getPizzaValues = (cart) => {
 };
 const Checkout = () => {
   const [deliveryMethod, setDeliveryMethod] = useState('');
-  const { isAuthenticated, user, cart, quantity } = useSelector(
+  const { isAuthenticated, user, cart, quantity, orderSubmitted } = useSelector(
     (state) => state.context
   );
   const dispatch = useDispatch();
@@ -30,6 +31,10 @@ const Checkout = () => {
   const submitOrderHandler = () => {
     dispatch(submitOrderAction(getPizzaValues(cart)));
   };
+
+  if (orderSubmitted) {
+    return <Redirect to='/my-orders' />;
+  }
 
   if (!quantity || quantity < 1) {
     return <EmptyBag />;
