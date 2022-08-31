@@ -1,6 +1,6 @@
 # PIZZA App 1.0
 
-This is a MERN stack application, "MERN Stack Front To Back". It is a small PIZZA app that includes authentication, cart, checkout, and order history.
+This is a MERN stack application, "MERN Stack Front To Back". It is a small PIZZA app that includes authentication, cart, checkout, order history, and account information.
 
 ## Installation
 
